@@ -1,0 +1,6 @@
+---
+
+- hosts: kafka
+  become: yes
+  roles:
+    - name: kafka-docker

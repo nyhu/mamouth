@@ -1,0 +1,10 @@
+version: '3.2'
+
+services:
+
+  mammouth:
+    container_name: mammouth
+    image: mammouth
+    build: https://github.com/nyhu/mamouth.git
+    volumes:
+      - "./.data:/tmp"

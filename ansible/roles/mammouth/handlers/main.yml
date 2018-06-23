@@ -1,0 +1,15 @@
+
+- name: up
+  command: docker-compose up -d --remove-orphans --build
+  args:
+    chdir: "{{ install_path }}/"
+
+- name: restart
+  command: docker-compose restart
+  args:
+    chdir: "{{ install_path }}/"
+
+- name: stop
+  command: docker-compose stop
+  args:
+    chdir: "{{ install_path }}/"

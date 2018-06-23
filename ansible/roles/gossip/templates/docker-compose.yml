@@ -1,0 +1,9 @@
+version: '3.2'
+
+services:
+
+  gossip:
+    container_name: gossip
+    image: gossip
+    build: https://github.com/nyhu/mamouth.git
+    entrypoint: ["go", "run", "cmd/gossip/main.go"]

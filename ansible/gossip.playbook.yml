@@ -1,0 +1,8 @@
+---
+
+- hosts: gossip
+  become: yes
+  roles:
+    - name: mongrelion.docker
+      docker_version: latest
+    - name: gossip

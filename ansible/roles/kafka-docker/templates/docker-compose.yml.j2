@@ -1,0 +1,26 @@
+version: '3.2'
+
+services:
+
+  kafka:
+    container_name: kafka 
+    image: confluentinc/cp-kafka:4.1.0
+    ports:
+      - "{{ service_port }}:{{ service_port }}"
+    volumes:
+      - "{{ install_path }}/data:{{ install_path }}/data"
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: {{ zookeeper_connect }}
+      KAFKA_ADVERTISED_LISTENERS: {{ advertised_listeners }}
+      KAFKA_HOST_NAME: {{ ansible_hostname }}
+      SERVICE_PORTS: {{ service_port }}
+      KAFKA_LOG_DIR: {{ log_dir }}
+      KAFKA_LOG_DIRS: {{ log_dirs }}
+
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: {{ offsets_topic_replication_factor }}
+      KAFKA_OFFSETS_RETENTION_MINUTES: {{ offsets_retention_minutes }}
+      KAFKA_LOG_RETENTION_HOURS: {{ log_retention_hours }}
+      KAFKA_LOG_RETENTION_BYTES: {{ log_retention_bytes }}
+      KAFKA_MAX_MESSAGE_BYTES: {{ max_message_bytes }}
+      KAFKA_DEFAULT_REPLICATION_FACTOR: {{ default_replication_factor }}
+      KAFKA_MIN_INSYNC_REPLICAS: {{ min_insync_replicas }}

@@ -1,0 +1,22 @@
+---
+
+install_path: /srv/zookeeper
+
+# following block is required
+# other servers should be comma separated
+service_port: 29092
+advertised_listeners: PLAINTEXT://{{ ansible_host }}:{{ service_port }}
+# carrefull, logs in kafka are not logs but where the actual data is store
+log_dir: "{{ install_path }}/data"
+log_dirs: "{{ install_path }}/data" # takes precedence over dir
+
+# following block is our custom kafka setting
+# all variables found in apache documentation can be set with KAFKA_ prefix and underscore instead of dots
+offsets_topic_replication_factor: 3 # default
+offsets_retention_minutes: 21600 # time before offsets time out (14 d in min)
+log_retention_hours: 744 # time entity are kept in logs (31 d in hour)
+log_retention_bytes: -1 # maw byte of a partition before discarding entity from logs (never)
+max_message_bytes: 1000012 # max entity size allow by kafka (10000 * aproximated timeserie)
+default_replication_factor: 2 # lesser the faster, on three planed node we can loose one so higher replication would be useless
+min_insync_replicas: 1 # default, number of replica before producer ack
+

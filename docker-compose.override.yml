@@ -1,0 +1,17 @@
+version: '2.3'
+
+services:
+  mammouth:
+    volumes:
+      - "./:/go/src/github.com/nyhu/mamouth"
+      - "/tmp:/tmp"
+    entrypoint: watcher -watch github.com/nyhu/mamouth -run github.com/nyhu/mamouth/cmd/mamouth
+
+  test:
+    volumes:
+      - "./:/go/src/github.com/nyhu/mamouth"
+      - "./.tmp:/tmp"
+
+  gossip:
+    volumes:
+      - "./:/go/src/github.com/nyhu/mamouth"

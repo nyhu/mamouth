@@ -1,0 +1,11 @@
+---
+
+- name: APPDIR | create dest repertory
+  file: path={{ install_path }} state=directory owner=root group=root
+  become: yes
+
+- name: TEMPLATE | Deploy configuration
+  template:
+    src: docker-compose.yml
+    dest: "{{ install_path }}/docker-compose.yml"
+  notify: up

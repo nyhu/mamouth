@@ -1,0 +1,17 @@
+version: '2.3'
+
+services:
+  mammouth:
+    image: ${IMAGE:-mammouth}
+    build: .
+    container_name: mammouth
+
+  test:
+    image: ${IMAGE:-mammouth}
+    volumes:
+      - /tmp/test-results:/tmp/test-results
+    entrypoint: ./tools/script/test.sh
+
+  gossip:
+    image: ${IMAGE:-mammouth}
+    entrypoint: ["go", "run", "cmd/gossip/main.go"]
